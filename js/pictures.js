@@ -19,133 +19,14 @@ var getComments = function () {
   return (COMMENTS_LIST[rand]);
 };
 
-var pictures = [
-  {
-    url: getPictureUrl(1),
-    likes: getLikesAmount(),
-    comments: getComments()
-  },
-  {
-    url: getPictureUrl(2),
-    likes: getLikesAmount(),
-    comments: getComments()
-  },
-  {
-    url: getPictureUrl(3),
-    likes: getLikesAmount(),
-    comments: getComments()
-  },
-  {
-    url: getPictureUrl(4),
-    likes: getLikesAmount(),
-    comments: getComments()
-  },
-  {
-    url: getPictureUrl(5),
-    likes: getLikesAmount(),
-    comments: getComments()
-  },
-  {
-    url: getPictureUrl(6),
-    likes: getLikesAmount(),
-    comments: getComments()
-  },
-  {
-    url: getPictureUrl(7),
-    likes: getLikesAmount(),
-    comments: getComments()
-  },
-  {
-    url: getPictureUrl(8),
-    likes: getLikesAmount(),
-    comments: getComments()
-  },
-  {
-    url: getPictureUrl(9),
-    likes: getLikesAmount(),
-    comments: getComments()
-  },
-  {
-    url: getPictureUrl(10),
-    likes: getLikesAmount(),
-    comments: getComments()
-  },
-  {
-    url: getPictureUrl(11),
-    likes: getLikesAmount(),
-    comments: getComments()
-  },
-  {
-    url: getPictureUrl(12),
-    likes: getLikesAmount(),
-    comments: getComments()
-  },
-  {
-    url: getPictureUrl(13),
-    likes: getLikesAmount(),
-    comments: getComments()
-  },
-  {
-    url: getPictureUrl(14),
-    likes: getLikesAmount(),
-    comments: getComments()
-  },
-  {
-    url: getPictureUrl(15),
-    likes: getLikesAmount(),
-    comments: getComments()
-  },
-  {
-    url: getPictureUrl(16),
-    likes: getLikesAmount(),
-    comments: getComments()
-  },
-  {
-    url: getPictureUrl(17),
-    likes: getLikesAmount(),
-    comments: getComments()
-  },
-  {
-    url: getPictureUrl(18),
-    likes: getLikesAmount(),
-    comments: getComments()
-  },
-  {
-    url: getPictureUrl(19),
-    likes: getLikesAmount(),
-    comments: getComments()
-  },
-  {
-    url: getPictureUrl(20),
-    likes: getLikesAmount(),
-    comments: getComments()
-  },
-  {
-    url: getPictureUrl(21),
-    likes: getLikesAmount(),
-    comments: getComments()
-  },
-  {
-    url: getPictureUrl(22),
-    likes: getLikesAmount(),
-    comments: getComments()
-  },
-  {
-    url: getPictureUrl(23),
-    likes: getLikesAmount(),
-    comments: getComments()
-  },
-  {
-    url: getPictureUrl(24),
-    likes: getLikesAmount(),
-    comments: getComments()
-  },
-  {
-    url: getPictureUrl(25),
-    likes: getLikesAmount(),
-    comments: getComments()
+var pictures = [];
+
+var getPicturesArr = function () {
+  for (i = 0; i < 25; i++) {
+    pictures[i] = {url: getPictureUrl(Math.floor(Math.random() * pictures.length)), likes: getLikesAmount(), comments: getComments()};
   }
-]; // Наверное, тут должна быть функция, которая генерирует 25 объектов, но я не понимаю, как ее написать
+  alert (pictures);
+};
 
 var pictureList = document.querySelector('.pictures');
 
