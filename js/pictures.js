@@ -2,10 +2,24 @@
 
 var COMMENTS_LIST = ['Всё отлично!', 'В целом всё неплохо. Но не всё.', 'Когда вы делаете фотографию, хорошо бы убирать палец из кадра. В конце концов это просто непрофессионально.', 'Моя бабушка случайно чихнула с фотоаппаратом в руках и у неё получилась фотография лучше.', 'Я поскользнулся на банановой кожуре и уронил фотоаппарат на кота и у меня получилась фотография лучше.', 'Лица у людей на фотке перекошены, как будто их избивают. Как можно было поймать такой неудачный момент?!'];
 
+var numberList = [];
+for (var i = 0; i < 25; i++) {
+  numberList[i] = i + 1;
+}
+
 var getPictureUrl = function (number) {
   var src = 'photos/' + number + '.jpg';
   return src;
 };
+
+/*var getPictureUrl = function () {
+  for (var i = 0; i <= numberList.length; i++) {
+    var rand = Math.floor(Math.random() * numberList.length);
+    var newNumberList = numberList.filter(function (number) {
+      return number !== rand;
+    });
+  } return newNumberList;
+};*/
 
 var min = 15;
 var max = 200;
@@ -22,10 +36,16 @@ var getComments = function () {
 var pictures = [];
 
 var getPicturesArr = function () {
-  for (i = 0; i < 25; i++) {
-    pictures[i] = {url: getPictureUrl(Math.floor(Math.random() * pictures.length)), likes: getLikesAmount(), comments: getComments()};
+  for (var i = 0; i <= numberList.length; i++) {
+    var rand = Math.floor(Math.random() * numberList.length);
+    var pictureName = numberList.filter(function (number) {
+      return number !== rand;
+    });
   }
-  alert (pictures);
+  for (var j = 0; j < 24; j++) {
+    pictures[j] = {url: getPictureUrl(pictureName[j]), likes: getLikesAmount(), comments: getComments()};
+  }
+  return (pictures);
 };
 
 var pictureList = document.querySelector('.pictures');
@@ -43,7 +63,7 @@ var renderPicture = function (picture) {
 };
 
 var fragment = document.createDocumentFragment();
-for (var i = 0; i < pictures.length; i++) {
+for (i = 0; i < pictures.length; i++) {
   fragment.appendChild(renderPicture(pictures[i]));
 }
 pictureList.appendChild(fragment);
