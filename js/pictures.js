@@ -12,15 +12,6 @@ var getPictureUrl = function (number) {
   return src;
 };
 
-/*var getPictureUrl = function () {
-  for (var i = 0; i <= numberList.length; i++) {
-    var rand = Math.floor(Math.random() * numberList.length);
-    var newNumberList = numberList.filter(function (number) {
-      return number !== rand;
-    });
-  } return newNumberList;
-};*/
-
 var min = 15;
 var max = 200;
 
@@ -36,7 +27,7 @@ var getComments = function () {
 var pictures = [];
 
 var getPicturesArr = function () {
-  for (var i = 0; i <= numberList.length; i++) {
+  for (i = 0; i <= numberList.length; i++) {
     var rand = Math.floor(Math.random() * numberList.length);
     var pictureName = numberList.filter(function (number) {
       return number !== rand;
@@ -48,6 +39,8 @@ var getPicturesArr = function () {
   return (pictures);
 };
 
+pictures.push(getPicturesArr());
+
 var pictureList = document.querySelector('.pictures');
 
 var pictureTemplate = document.querySelector('#picture-template').content;
@@ -55,7 +48,7 @@ var pictureTemplate = document.querySelector('#picture-template').content;
 var renderPicture = function (picture) {
   var pictureElement = pictureTemplate.cloneNode(true);
 
-  pictureElement.querySelector('img').setAttribute('src') = picture.url;
+  pictureElement.querySelector('img').src = picture.url;
   pictureElement.querySelector('.picture-likes').textContent = picture.likes;
   pictureElement.querySelector('.picture-comments').textContent = picture.comments;
 
@@ -72,6 +65,6 @@ document.querySelector('.upload-overlay').classList.add('hidden');
 
 document.querySelector('.gallery-overlay').classList.remove('hidden');
 
-document.querySelector('.gallery-overlay-image').setAttribute('src') = pictures[0].url;
+document.querySelector('.gallery-overlay-image').src = pictures[0].url;
 document.querySelector('.likes-count').textContent = pictures[0].likes;
 document.querySelector('.comments-count').textContent = pictures[0].comments;
