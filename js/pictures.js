@@ -1,6 +1,8 @@
 'use strict';
 
 var COMMENTS_LIST = ['Всё отлично!', 'В целом всё неплохо. Но не всё.', 'Когда вы делаете фотографию, хорошо бы убирать палец из кадра. В конце концов это просто непрофессионально.', 'Моя бабушка случайно чихнула с фотоаппаратом в руках и у неё получилась фотография лучше.', 'Я поскользнулся на банановой кожуре и уронил фотоаппарат на кота и у меня получилась фотография лучше.', 'Лица у людей на фотке перекошены, как будто их избивают. Как можно было поймать такой неудачный момент?!'];
+var ESC_KEYCODE = 27;
+var ENTER_KEYCODE = 13;
 
 var numberList = [];
 
@@ -74,3 +76,44 @@ document.querySelector('.gallery-overlay').classList.remove('hidden');
 document.querySelector('.gallery-overlay-image').src = pictures[0].url;
 document.querySelector('.likes-count').textContent = pictures[0].likes;
 document.querySelector('.comments-count').textContent = pictures[0].comments;
+
+
+var picture = document.querySelector('.picture');
+var galleryOverlay = document.querySelector('.gallery-overlay');
+var galleryOverlayClose = galleryOverlay.querySelector('.gallery-overlay-close');
+
+var onPopupEscPress = function (evt) {
+  if (evt.keyCode === ESC_KEYCODE) {
+    closePopup();
+  }
+};
+
+var openPopup = function () {
+  galleryOverlay.classList.remove('hidden');
+  document.addEventListener('keydown', onPopupEscPress);
+};
+
+var closePopup = function () {
+  galleryOverlay.classList.add('hidden');
+  document.removeEventListener('keydown', onPopupEscPress);
+};
+
+picture.addEventListener('click', function () {
+  openPopup();
+});
+
+picture.addEventListener('keydown', function (evt) {
+  if (evt.keyCode === ENTER_KEYCODE) {
+    openPopup();
+  }
+});
+
+galleryOverlayClose.addEventListener('click', function () {
+  closePopup();
+});
+
+galleryOverlayClose.addEventListener('keydown', function (evt) {
+  if (evt.keyCode === ENTER_KEYCODE) {
+    closePopup();
+  }
+});
